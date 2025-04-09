@@ -1,15 +1,18 @@
-<h1>Formulario Analítica</h1>
+
 <form>
   <div class="mb-3">
-  <label  class="form-label">Paciente</label>
-  <select name ="paciente"  [(ngModel)]="analitica.pacienteId"
-          class="form-select" aria-label="Default select example">
-    <option value="paciente.id" *ngFor="let paciente of pacientes">
-      {{paciente.nombre}} {{paciente.apellido}} -- {{paciente.dni}}</option>
-  </select>
+    <h1 class="mb-3">FORMULARIO ANALITÍCA</h1>
   </div>
   <div class="mb-3">
-    <label  class="form-label">Médico</label>
+    <h4 class="mb-3">PACIENTE</h4>
+    <select name ="paciente"  [(ngModel)]="analitica.pacienteId"
+            class="form-select" aria-label="Default select example">
+      <option value="paciente.id" *ngFor="let paciente of pacientes">
+        {{paciente.nombre}} {{paciente.apellido}} -- {{paciente.dni}}</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <h4 class="mb-3">MEDICO</h4>
     <select name ="medico"  [(ngModel)]="analitica.medicoId"
             class="form-select" aria-label="Default select example">
       <option value="medico.id" *ngFor="let medico of medicos">
@@ -17,20 +20,28 @@
     </select>
   </div>
   <div class="mb-3">
-    <label for="fecha" class="form-label">Fecha</label>
-    <input type="text" class="form-control" id="fecha" name="fecha" [(ngModel)]="analitica.fechaCreacion">
+    <h4 class="mb-3">FECHA</h4>
+    <input type="date" class="form-control" id="fecha" name="fecha" [(ngModel)]="analitica.fechaCreacion">
   </div>
   <div class="mb-3">
-    <label for="observaciones" class="form-label">Observaciones</label>
+    <h4 class="mb-3">OBSERVACIONES</h4>
     <input type="text" class="form-control" id="observaciones" name="observaciones" [(ngModel)]="analitica.observaciones">
   </div>
-  <label  class="form-label">PÁRAMETROS</label>
-  <div class="mb-3"  *ngFor="let parametro of todosParametros">
-
-      <input type="checkbox"
-             [checked]="isParametroSelected(parametro)"
-             (change)="toggleParametro(parametro)">
-      {{parametro}}
+  <div class="mb-4">
+    <h4 class="mb-3">PARÁMETROS</h4>
+    <div class="row">
+      <div *ngFor="let parametro of todosParametros" class="col-md-4 col-sm-6 mb-2">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox"
+                 [id]="'param-'+parametro"
+                 [checked]="isParametroSelected(parametro)"
+                 (change)="toggleParametro(parametro)">
+          <label class="form-check-label" [for]="'param-'+parametro">
+            {{parametro}}
+          </label>
+        </div>
+      </div>
+    </div>
   </div>
   <button type="submit" class="btn btn-primary" value="insertar" (click)="submit()">Insertar</button>
 </form>
