@@ -1,0 +1,36 @@
+<h1>Formulario Analítica</h1>
+<form>
+  <div class="mb-3">
+  <label  class="form-label">Paciente</label>
+  <select name ="paciente"  [(ngModel)]="analitica.pacienteId"
+          class="form-select" aria-label="Default select example">
+    <option value="paciente.id" *ngFor="let paciente of pacientes">
+      {{paciente.nombre}} {{paciente.apellido}} -- {{paciente.dni}}</option>
+  </select>
+  </div>
+  <div class="mb-3">
+    <label  class="form-label">Médico</label>
+    <select name ="medico"  [(ngModel)]="analitica.medicoId"
+            class="form-select" aria-label="Default select example">
+      <option value="medico.id" *ngFor="let medico of medicos">
+        {{medico.nombre}} {{medico.apellido}} -- {{medico.colegiado}}</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="fecha" class="form-label">Fecha</label>
+    <input type="text" class="form-control" id="fecha" name="fecha" [(ngModel)]="analitica.fechaCreacion">
+  </div>
+  <div class="mb-3">
+    <label for="observaciones" class="form-label">Observaciones</label>
+    <input type="text" class="form-control" id="observaciones" name="observaciones" [(ngModel)]="analitica.observaciones">
+  </div>
+  <label  class="form-label">PÁRAMETROS</label>
+  <div class="mb-3"  *ngFor="let parametro of todosParametros">
+
+      <input type="checkbox"
+             [checked]="isParametroSelected(parametro)"
+             (change)="toggleParametro(parametro)">
+      {{parametro}}
+  </div>
+  <button type="submit" class="btn btn-primary" value="insertar" (click)="submit()">Insertar</button>
+</form>

@@ -1,0 +1,6 @@
+export enum EstadoAnalitica {
+  CREADA = "CREADA",
+  EXTRAIDA = "EXTRAIDA",
+  COMPLETADA = "COMPLETADA",
+  CANCELADA = "CANCELADA"
+}

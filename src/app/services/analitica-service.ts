@@ -1,0 +1,27 @@
+import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Analitica} from '../models/analitica';
+import {Observable} from 'rxjs';
+import {Paciente} from '../models/paciente';
+import {Medico} from '../models/medico';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AnaliticaService {
+
+  constructor(public http:HttpClient) { }
+
+
+  public buscarAnaliticas():Observable<Analitica[]>{
+    return this.http.get<Analitica[]>('http://localhost:8080/webapi/analiticas')
+  }
+
+  public buscarPacientes():Observable<Paciente[]>{
+    return this.http.get<Paciente[]>('http://localhost:8080/webapi/pacientes')
+  }
+  public buscarMedicos():Observable<Medico[]>{
+    return this.http.get<Medico[]>('http://localhost:8080/webapi/medicos')
+  }
+
+}

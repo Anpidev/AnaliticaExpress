@@ -1,0 +1,29 @@
+<h1>Lista Analíticas</h1>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Nombre del paciente</th>
+    <th scope="col">Apellido del paciente</th>
+    <th scope="col">Nombre del médico </th>
+    <th scope="col">Apellido del médico </th>
+    <th scope="col">Fecha </th>
+    <th scope="col">Estado </th>
+    <th scope="col">Observaciones </th>
+    <th scope="col">Parámetros </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let analitica of analiticas">
+    <th scope="row">{{analitica.id}}</th>
+    <td>{{analitica.pacienteNombre }}</td>
+    <td>{{analitica.pacienteApellido }}</td>
+    <td>{{analitica.medicoNombre }}</td>
+    <td>{{analitica.medicoApellido }}</td>
+    <td>{{analitica.fechaCreacion }}</td>
+    <td>{{analitica.estado }}</td>
+    <td>{{analitica.observaciones }}</td>
+    <td>{{analitica.parametros }}</td>
+  </tr>
+  </tbody>
+</table>
