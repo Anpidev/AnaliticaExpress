@@ -4,14 +4,14 @@ import {NgForOf} from '@angular/common';
 import {AnaliticaService} from '../../services/analitica-service';
 
 @Component({
-  selector: 'app-lista-productos',
+  selector: 'app-lista-analtiicas',
   imports: [
     NgForOf
   ],
-  templateUrl: './lista-productos.component.html',
-  styleUrl: './lista-productos.component.css'
+  templateUrl: './lista-analticas.component.html',
+  styleUrl: './lista-analticas.component.css'
 })
-export class ListaProductosComponent {
+export class ListaAnalticasComponent {
  analiticas: Analitica[]=[];
 
  constructor(public analiticaService:AnaliticaService) {

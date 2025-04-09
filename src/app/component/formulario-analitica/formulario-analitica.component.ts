@@ -8,14 +8,14 @@ import {AnaliticaService} from '../../services/analitica-service';
 import {Parametros} from '../../models/parametros';
 
 @Component({
-  selector: 'app-formulario-nuevo',
+  selector: 'app-formulario-analitica',
   imports: [
     FormsModule,CommonModule
   ],
-  templateUrl: './formulario-nuevo.component.html',
-  styleUrl: './formulario-nuevo.component.css'
+  templateUrl: './formulario-analitica.component.html',
+  styleUrl: './formulario-analitica.component.css'
 })
-export class FormularioNuevoComponent implements  OnInit{
+export class FormularioAnaliticaComponent implements  OnInit{
 
   // Array de pacientes y medicos
   pacientes: Paciente[]=[];

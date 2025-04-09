@@ -1,0 +1,25 @@
+<h1 class="mb-3">LISTA MÉDICOS</h1>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Apellidos</th>
+    <th scope="col">NºColegiado</th>
+    <th scope="col">Email </th>
+    <th scope="col">Teléfono </th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let medico of medicos">
+    <th scope="row">{{medico.id}}</th>
+    <td>{{medico.nombre }}</td>
+    <td>{{medico.apellido }}</td>
+    <td>{{medico.colegiado }}</td>
+    <td>{{medico.email }}</td>
+    <td>{{medico.telefono }}</td>
+
+  </tr>
+  </tbody>
+</table>

@@ -1,7 +1,7 @@
 export class Paciente {
 
   constructor(
-    public  pacienteId:number,
+    public  id:number,
 
     public  dni: string,
 

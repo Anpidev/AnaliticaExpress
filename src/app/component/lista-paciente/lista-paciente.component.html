@@ -1,0 +1,25 @@
+<h1 class="mb-3">LISTA PACIENTES</h1>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Apellidos</th>
+    <th scope="col">DNI</th>
+    <th scope="col">Email </th>
+    <th scope="col">Teléfono </th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let paciente of pacientes">
+    <th scope="row">{{paciente.id}}</th>
+    <td>{{paciente.nombre }}</td>
+    <td>{{paciente.apellido }}</td>
+    <td>{{paciente.dni }}</td>
+    <td>{{paciente.email }}</td>
+    <td>{{paciente.telefono }}</td>
+
+  </tr>
+  </tbody>
+</table>

@@ -1,7 +1,7 @@
 export class Medico {
 
   constructor(
-    public  medicoId:number,
+    public  id:number,
 
     public  colegiado: string,
 

@@ -1,0 +1,27 @@
+<form>
+  <div class="mb-3">
+    <h1 class="mb-3">FORMULARIO PACIENTE</h1>
+  </div>
+  <div class="mb-3">
+    <h4 class="mb-3">NOMBRE</h4>
+    <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="paciente.nombre">
+  </div>
+  <div class="mb-3">
+    <h4 class="mb-3">APELLIDOS</h4>
+    <input type="text" class="form-control" id="apellidos" name="apellidos" [(ngModel)]="paciente.apellido">
+  </div>
+  <div class="mb-3">
+    <h4 class="mb-3">DNI</h4>
+    <input type="text" class="form-control" id="dni" name="dni" [(ngModel)]="paciente.dni">
+  </div>
+  <div class="mb-3">
+    <h4 class="mb-3">EMAIL</h4>
+    <input type="text" class="form-control" id="email" name="email" [(ngModel)]="paciente.email">
+  </div>
+  <div class="mb-3">
+    <h4 class="mb-3">TELÉFONO</h4>
+    <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="paciente.telefono">
+  </div>
+
+  <button type="submit" class="btn btn-primary" value="insertar" (click)="submit()">Insertar</button>
+</form>
