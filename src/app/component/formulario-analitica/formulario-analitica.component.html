@@ -1,22 +1,23 @@
-
 <form>
   <div class="mb-3">
     <h1 class="mb-3">FORMULARIO ANALITÍCA</h1>
   </div>
   <div class="mb-3">
     <h4 class="mb-3">PACIENTE</h4>
-    <select name ="paciente"  [(ngModel)]="analitica.pacienteId"
+    <select name="paciente" [(ngModel)]="analitica.pacienteId"
             class="form-select" aria-label="Default select example">
-      <option value="paciente.id" *ngFor="let paciente of pacientes">
-        {{paciente.nombre}} {{paciente.apellido}} -- {{paciente.dni}}</option>
+      <option *ngFor="let paciente of pacientes" [ngValue]="paciente.id">
+        {{paciente.nombre}} {{paciente.apellido}} -- {{paciente.dni}}
+      </option>
     </select>
   </div>
   <div class="mb-3">
     <h4 class="mb-3">MEDICO</h4>
-    <select name ="medico"  [(ngModel)]="analitica.medicoId"
+    <select name="medico" [(ngModel)]="analitica.medicoId"
             class="form-select" aria-label="Default select example">
-      <option value="medico.id" *ngFor="let medico of medicos">
-        {{medico.nombre}} {{medico.apellido}} -- {{medico.colegiado}}</option>
+      <option *ngFor="let medico of medicos" [ngValue]="medico.id">
+        {{medico.nombre}} {{medico.apellido}} -- {{medico.colegiado}}
+      </option>
     </select>
   </div>
   <div class="mb-3">

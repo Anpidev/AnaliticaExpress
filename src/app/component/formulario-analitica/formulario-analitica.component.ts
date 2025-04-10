@@ -29,8 +29,11 @@ export class FormularioAnaliticaComponent implements  OnInit{
 //Inyeccion del service
   constructor(private analiticaService: AnaliticaService) {}
 
+  //INSERTAR
   public submit():void{
-    console.log(this.analitica);
+    this.analiticaService.insertarAnalitica(this.analitica).subscribe(()=>{
+      console.log("Has insertado la información")
+    })
   }
 
   ngOnInit(): void {

@@ -12,7 +12,7 @@ export class AnaliticaService {
 
   constructor(public http:HttpClient) { }
 
-
+//METODOS PARA OBTENER DATOS GET
   public buscarAnaliticas():Observable<Analitica[]>{
     return this.http.get<Analitica[]>('http://localhost:8080/webapi/analiticas')
   }
@@ -24,4 +24,9 @@ export class AnaliticaService {
     return this.http.get<Medico[]>('http://localhost:8080/webapi/medicos')
   }
 
+  //METODOS PARA MANDAR DATOS AL BACK POST
+
+  public insertarAnalitica(analitica:Analitica):Observable <Analitica>{
+    return this.http.post<Analitica>('http://localhost:8080/webapi/analiticas',analitica)
+  }
 }
