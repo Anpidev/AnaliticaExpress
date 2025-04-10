@@ -6,6 +6,7 @@ import {Paciente} from '../../models/paciente';
 import {Medico} from '../../models/medico';
 import {AnaliticaService} from '../../services/analitica-service';
 import {Parametros} from '../../models/parametros';
+import {EstadoAnalitica} from '../../models/estado-analitica';
 
 @Component({
   selector: 'app-formulario-analitica',
@@ -24,7 +25,8 @@ export class FormularioAnaliticaComponent implements  OnInit{
   // Datos del formulario actual
   analitica: Analitica = {
     ...{} as Analitica,
-    parametros: [] // Inicializamos solo el array necesario
+    parametros: [],// Inicializamos solo el array necesario
+    estado: EstadoAnalitica.CREADA //Todas las analiticas se crean con ese estado por defecto
   };
 //Inyeccion del service
   constructor(private analiticaService: AnaliticaService) {}

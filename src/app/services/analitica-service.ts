@@ -48,4 +48,11 @@ export class AnaliticaService {
   public borrarMedico(medico: Medico): Observable<Medico> {
     return this.http.delete<Medico>(`http://localhost:8080/webapi/medicos/${medico.id}`);
   }
+
+  //Metodo para actualizar el estado
+  public actualizarEstado(analitica: Analitica): Observable<Analitica> {
+    return this.http.put<Analitica>(`http://localhost:8080/webapi/analiticas/${analitica.id}`, analitica);
+  }
+
+
 }

@@ -1,15 +1,25 @@
-
 <form>
   <div class="mb-3">
     <h1 class="mb-3">CAMBIO DE ESTADO DE LA ANALÍTICA</h1>
   </div>
+
   <div class="mb-3">
-    <h4 class="mb-3">ESTADO</h4>
-    <select [(ngModel)]="analitica.estado" name="estado">
+    <label>Selecciona una analítica</label>
+    <select [(ngModel)]="analiticaSeleccionada" name="analitica" [compareWith]="compararAnaliticas">
+      <option *ngFor="let a of analiticas" [ngValue]="a">
+        ID: {{a.id}} - Estado actual: {{a.estado}}
+      </option>
+    </select>
+  </div>
+
+  <div class="mb-3" *ngIf="analiticaSeleccionada">
+    <h4 class="mb-3">Nuevo estado</h4>
+    <select [(ngModel)]="analiticaSeleccionada.estado" name="estado">
       <option *ngFor="let estado of estados" [value]="estado">
         {{estado}}
       </option>
     </select>
   </div>
-  <button type="submit" class="btn btn-primary" value="insertar" (click)="submit()">Insertar</button>
+
+  <button type="submit" class="btn btn-primary" (click)="submit()">Actualizar</button>
 </form>
