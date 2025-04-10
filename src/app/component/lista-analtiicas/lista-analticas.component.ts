@@ -23,8 +23,10 @@ export class ListaAnalticasComponent {
  }
 
 
-  borrar(analita:Analitica){
-   console.log(analita);
+  borrar(analitica:Analitica){
+   this.analiticaService.borrarAnalitica(analitica).subscribe(()=>{
+     console.log("Analítica eliminida")
+   })
  }
 }
 
