@@ -11,6 +11,7 @@
     <th scope="col">Estado </th>
     <th scope="col">Observaciones </th>
     <th scope="col">Parámetros </th>
+    <th scope="col"> </th>
   </tr>
   </thead>
   <tbody>
@@ -24,6 +25,11 @@
     <td>{{analitica.estado }}</td>
     <td>{{analitica.observaciones }}</td>
     <td>{{analitica.parametros }}</td>
+    <td>
+      <button type="submit" class="btn btn-danger" value="borrar" (click)="borrar(analitica)">BORRAR</button>
+    </td>
   </tr>
   </tbody>
 </table>
+
+
