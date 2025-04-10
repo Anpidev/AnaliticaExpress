@@ -3,6 +3,7 @@ import {Paciente} from '../../models/paciente';
 import {AnaliticaService} from '../../services/analitica-service';
 import {Medico} from '../../models/medico';
 import {NgForOf} from '@angular/common';
+import {Analitica} from '../../models/analitica';
 
 @Component({
   selector: 'app-lista-medico',
@@ -19,6 +20,12 @@ export class ListaMedicoComponent {
   constructor(public analiticaService:AnaliticaService) {
     this.analiticaService.buscarMedicos().subscribe((datos)=>{
       this.medicos=datos;
+    })
+  }
+
+  borrar(medico:Medico){
+    this.analiticaService.borrarMedico(medico).subscribe(()=>{
+      console.log("Médico eliminado")
     })
   }
 }

@@ -32,7 +32,7 @@ export class FormularioAnaliticaComponent implements  OnInit{
   //INSERTAR
   public submit():void{
     this.analiticaService.insertarAnalitica(this.analitica).subscribe(()=>{
-      console.log("Has insertado la información")
+      console.log("Información añadida")
     })
   }
 

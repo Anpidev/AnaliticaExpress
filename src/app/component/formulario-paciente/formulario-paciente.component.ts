@@ -3,6 +3,7 @@ import {Analitica} from '../../models/analitica';
 import {Paciente} from '../../models/paciente';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {AnaliticaService} from '../../services/analitica-service';
 
 @Component({
   selector: 'app-formulario-paciente',
@@ -17,8 +18,13 @@ export class FormularioPacienteComponent {
     ...{} as Paciente,
   }
 
+//Inyeccion del service
+  constructor(private analiticaService: AnaliticaService) {}
+
   public submit():void{
-    console.log(this.paciente);
+    this.analiticaService.insertarPaciente(this.paciente).subscribe(()=>{
+      console.log("Paciente añadido")
+    })
   }
 
 }

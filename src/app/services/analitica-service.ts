@@ -29,9 +29,23 @@ export class AnaliticaService {
   public insertarAnalitica(analitica: Analitica): Observable<Analitica> {
     return this.http.post<Analitica>('http://localhost:8080/webapi/analiticas', analitica);
   }
+  public insertarPaciente(paciente: Paciente): Observable<Paciente> {
+    return this.http.post<Paciente>('http://localhost:8080/webapi/pacientes', paciente);
+  }
+  public insertarMedico(medico: Medico): Observable<Medico> {
+    return this.http.post<Medico>('http://localhost:8080/webapi/medicos', medico);
+  }
 
   // Metodos para borrar
   public borrarAnalitica(analitica: Analitica): Observable<Analitica> {
     return this.http.delete<Analitica>(`http://localhost:8080/webapi/analiticas/${analitica.id}`);
+  }
+
+  public borrarPaciente(paciente: Paciente): Observable<Paciente> {
+    return this.http.delete<Paciente>(`http://localhost:8080/webapi/pacientes/${paciente.id}`);
+  }
+
+  public borrarMedico(medico: Medico): Observable<Medico> {
+    return this.http.delete<Medico>(`http://localhost:8080/webapi/medicos/${medico.id}`);
   }
 }

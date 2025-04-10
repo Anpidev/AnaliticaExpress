@@ -8,6 +8,7 @@
     <th scope="col">DNI</th>
     <th scope="col">Email </th>
     <th scope="col">Teléfono </th>
+    <th scope="col"> </th>
 
   </tr>
   </thead>
@@ -19,7 +20,9 @@
     <td>{{paciente.dni }}</td>
     <td>{{paciente.email }}</td>
     <td>{{paciente.telefono }}</td>
-
+    <td>
+      <button type="submit" class="btn btn-danger" value="borrar" (click)="borrar(paciente)">BORRAR</button>
+    </td>
   </tr>
   </tbody>
 </table>

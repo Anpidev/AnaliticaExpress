@@ -8,6 +8,7 @@
     <th scope="col">NºColegiado</th>
     <th scope="col">Email </th>
     <th scope="col">Teléfono </th>
+    <th scope="col"> </th>
 
   </tr>
   </thead>
@@ -19,6 +20,9 @@
     <td>{{medico.colegiado }}</td>
     <td>{{medico.email }}</td>
     <td>{{medico.telefono }}</td>
+    <td>
+      <button type="submit" class="btn btn-danger" value="borrar" (click)="borrar(medico)">BORRAR</button>
+    </td>
 
   </tr>
   </tbody>
