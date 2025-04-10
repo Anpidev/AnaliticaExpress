@@ -1,0 +1,15 @@
+
+<form>
+  <div class="mb-3">
+    <h1 class="mb-3">CAMBIO DE ESTADO DE LA ANALÍTICA</h1>
+  </div>
+  <div class="mb-3">
+    <h4 class="mb-3">ESTADO</h4>
+    <select [(ngModel)]="analitica.estado" name="estado">
+      <option *ngFor="let estado of estados" [value]="estado">
+        {{estado}}
+      </option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary" value="insertar" (click)="submit()">Insertar</button>
+</form>
