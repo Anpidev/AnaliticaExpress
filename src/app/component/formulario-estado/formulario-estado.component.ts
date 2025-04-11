@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {NgForOf, NgIf} from '@angular/common';
 import { EstadoAnalitica } from '../../models/estado-analitica';
 import { AnaliticaService } from '../../services/analitica-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-formulario-estado',
@@ -21,7 +22,7 @@ export class FormularioEstadoComponent implements OnInit {
   analiticaSeleccionada?: Analitica;
   estados = Object.values(EstadoAnalitica);
 
-  constructor(private analiticaService: AnaliticaService) {}
+  constructor(private analiticaService: AnaliticaService, public router:Router) {}
 
   ngOnInit(): void {
     this.analiticaService.buscarAnaliticas().subscribe(data => {
@@ -37,6 +38,7 @@ export class FormularioEstadoComponent implements OnInit {
     if (this.analiticaSeleccionada) {
       this.analiticaService.actualizarEstado(this.analiticaSeleccionada).subscribe(() => {
         console.log("Estado actualizado");
+        this.router.navigateByUrl("/analiticas");
       });
     } else {
       console.warn("No has seleccionado ninguna analítica.");

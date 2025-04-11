@@ -4,12 +4,15 @@ import {AnaliticaService} from '../../services/analitica-service';
 import {Medico} from '../../models/medico';
 import {NgForOf} from '@angular/common';
 import {Analitica} from '../../models/analitica';
+import {RouterLink, RouterLinkActive} from "@angular/router";
 
 @Component({
   selector: 'app-lista-medico',
-  imports: [
-    NgForOf
-  ],
+    imports: [
+        NgForOf,
+        RouterLink,
+        RouterLinkActive
+    ],
   templateUrl: './lista-medico.component.html',
   styleUrl: './lista-medico.component.css'
 })
