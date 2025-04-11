@@ -2,12 +2,15 @@ import { Component } from '@angular/core';
 import {Analitica} from '../../models/analitica';
 import {NgForOf, NgIf} from '@angular/common';
 import {AnaliticaService} from '../../services/analitica-service';
+import {RouterLink, RouterLinkActive} from '@angular/router';
 
 @Component({
   selector: 'app-lista-analitica',
   imports: [
     NgForOf,
-    NgIf
+    NgIf,
+    RouterLink,
+    RouterLinkActive
   ],
   templateUrl: './lista-analticas.component.html',
   styleUrl: './lista-analticas.component.css'

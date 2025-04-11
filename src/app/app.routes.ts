@@ -6,6 +6,7 @@ import {ListaPacienteComponent} from './component/lista-paciente/lista-paciente.
 import {FormularioPacienteComponent} from './component/formulario-paciente/formulario-paciente.component';
 import {ListaMedicoComponent} from './component/lista-medico/lista-medico.component';
 import {FormularioMedicoComponent} from './component/formulario-medico/formulario-medico.component';
+import {HomeComponent} from './component/home/home.component';
 
 export const routes: Routes = [
   {path:"analiticas", component:ListaAnalticasComponent},
@@ -15,5 +16,6 @@ export const routes: Routes = [
   {path:"formularioPaciente", component:FormularioPacienteComponent},
   {path:"medicos", component:ListaMedicoComponent},
   {path:"formularioMedico", component:FormularioMedicoComponent},
-  {path:"", redirectTo:"/analiticas", pathMatch:"full"}
+  {path:"home", component:HomeComponent},
+  {path:"", redirectTo:"/home", pathMatch:"full"}
 ];
