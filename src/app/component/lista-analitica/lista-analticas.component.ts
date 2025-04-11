@@ -4,7 +4,7 @@ import {NgForOf, NgIf} from '@angular/common';
 import {AnaliticaService} from '../../services/analitica-service';
 
 @Component({
-  selector: 'app-lista-analtiicas',
+  selector: 'app-lista-analitica',
   imports: [
     NgForOf,
     NgIf

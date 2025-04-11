@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {ListaAnalticasComponent} from './component/lista-analtiicas/lista-analticas.component';
+import {ListaAnalticasComponent} from './component/lista-analitica/lista-analticas.component';
 import {FormularioAnaliticaComponent} from './component/formulario-analitica/formulario-analitica.component';
 import {ListaPacienteComponent} from './component/lista-paciente/lista-paciente.component';
 import {FormularioPacienteComponent} from './component/formulario-paciente/formulario-paciente.component';
