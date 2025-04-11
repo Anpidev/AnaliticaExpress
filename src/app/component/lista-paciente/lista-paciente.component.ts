@@ -17,6 +17,9 @@ export class ListaPacienteComponent {
   pacientes: Paciente[]=[];
 
   constructor(public analiticaService:AnaliticaService) {
+    this.cargarPacientes();}
+
+  cargarPacientes(){
     this.analiticaService.buscarPacientes().subscribe((datos)=>{
       this.pacientes=datos;
     })
@@ -25,7 +28,8 @@ export class ListaPacienteComponent {
 
   borrar(paciente:Paciente){
     this.analiticaService.borrarPaciente(paciente).subscribe(()=>{
-      console.log("Paciente eliminado")
+      console.log("Paciente eliminado");
+      this.cargarPacientes();
     })
   }
 }

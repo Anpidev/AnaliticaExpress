@@ -21,6 +21,9 @@ export class ListaMedicoComponent {
   medicos: Medico[]=[];
 
   constructor(public analiticaService:AnaliticaService) {
+    this.cargarMedicos();
+  }
+  cargarMedicos(){
     this.analiticaService.buscarMedicos().subscribe((datos)=>{
       this.medicos=datos;
     })
@@ -28,7 +31,8 @@ export class ListaMedicoComponent {
 
   borrar(medico:Medico){
     this.analiticaService.borrarMedico(medico).subscribe(()=>{
-      console.log("Médico eliminado")
+      console.log("Médico eliminado");
+      this.cargarMedicos();
     })
   }
 }
