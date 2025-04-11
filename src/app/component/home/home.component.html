@@ -7,22 +7,13 @@
   </div>
   <ul class="nav justify-content-center">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" routerLink="/analiticas" routerLinkActive="active">Listado Analíticas</a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link active" aria-current="page" routerLink="/formularioAnalitica" routerLinkActive="active">Crear nueva analitica</a>
     </li>
     <li class="nav-item">
       <a class="nav-link active" aria-current="page" routerLink="/estado" routerLinkActive="active">Cambiar estado analítica</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" routerLink="/medicos" routerLinkActive="active">Listado Médicos</a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link active" aria-current="page" routerLink="/formularioMedico" routerLinkActive="active">Crear nuevo médico</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" routerLink="/pacientes" routerLinkActive="active">Listado Pacientes</a>
     </li>
     <li class="nav-item">
       <a class="nav-link active" aria-current="page" routerLink="/formularioPaciente" routerLinkActive="active">Crear nuevo paciente</a>
@@ -32,6 +23,49 @@
     </li>
   </ul>
 </nav>
+
+<!-- Sección Intermedia -->
+<section class="container my-5">
+  <h2 class="text-center mb-4">Bienvenido a Analitica Express</h2>
+  <p class="text-center mb-4">
+    Analitica Express es una plataforma web para crear analtíticas de forma eficiente. Aquí puedes crear, gestionar y seguir el progreso de tus analíticas, pacientes, médicos y mucho más.
+  </p>
+
+  <!-- Tarjetas de información -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <img src="analitica.jpg" class="card-img-top" alt="Card image" style="height: 500px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">Analíticas</h5>
+          <p class="card-text">Gestiona todas las analíticas de tus pacientes de manera eficiente.</p>
+          <a href="/analiticas" class="btn btn-primary">Ver analíticas</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <img src="medico.jpg" class="card-img-top" alt="Card image" style="height: 500px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">Médicos</h5>
+          <p class="card-text">Consulta y gestiona los datos de los médicos de tu red.</p>
+          <a href="/medicos" class="btn btn-primary">Ver médicos</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <img src="paciente.jpg" class="card-img-top" alt="Card image" style="height: 500px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">Pacientes</h5>
+          <p class="card-text">Accede rápidamente a la información de tus pacientes.</p>
+          <a href="/pacientes" class="btn btn-primary">Ver pacientes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer class="bg-primary text-white text-center py-3 mt-5">
   <p class="mb-0">© 2025 Analitica Express. Todos los derechos reservados.</p>
   <p><small>Hecho con ❤️ por Angela Ruiz Rivas.</small></p>
