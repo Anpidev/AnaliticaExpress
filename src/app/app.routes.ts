@@ -7,8 +7,10 @@ import {FormularioPacienteComponent} from './component/formulario-paciente/formu
 import {ListaMedicoComponent} from './component/lista-medico/lista-medico.component';
 import {FormularioMedicoComponent} from './component/formulario-medico/formulario-medico.component';
 import {HomeComponent} from './component/home/home.component';
+import {LoginComponent} from './component/login/login.component';
 
 export const routes: Routes = [
+  {path:"login", component:LoginComponent},
   {path:"analiticas", component:ListaAnalticasComponent},
   {path:"formularioAnalitica", component:FormularioAnaliticaComponent},
   {path:"estado", component:FormularioEstadoComponent},
@@ -17,5 +19,5 @@ export const routes: Routes = [
   {path:"medicos", component:ListaMedicoComponent},
   {path:"formularioMedico", component:FormularioMedicoComponent},
   {path:"home", component:HomeComponent},
-  {path:"", redirectTo:"/home", pathMatch:"full"}
+  {path:"", redirectTo:"/login", pathMatch:"full"}
 ];
