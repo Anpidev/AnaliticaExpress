@@ -26,7 +26,8 @@
 
 <!-- Sección Intermedia -->
 <section class="container my-5">
-  <h2 class="text-center mb-4">Bienvenido a Analitica Express</h2>
+  @if (usuario){
+  <h2 class="text-center mb-4">Bienvenido usuario : {{usuario?.nombreUsuario}}</h2>}
   <p class="text-center mb-4">
     Analitica Express es una plataforma web para crear analtíticas de forma eficiente. Aquí puedes crear, gestionar y seguir el progreso de tus analíticas, pacientes, médicos y mucho más.
   </p>

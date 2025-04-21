@@ -1,0 +1,38 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow">
+        <div class="card-body p-4">
+          <h2 class="text-center mb-4">Iniciar Sesión</h2>
+
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="mb-3">
+              <label for="nombreUsuario" class="form-label">Usuario</label>
+              <input type="text"
+                     formControlName="nombreUsuario"
+                     class="form-control"
+                     id="nombreUsuario"
+                     placeholder="Ingrese su usuario">
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password"
+                     formControlName="password"
+                     class="form-control"
+                     id="password"
+                     placeholder="Ingrese su contraseña">
+            </div>
+
+            <div class="d-grid gap-2">
+              <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">
+                Iniciar Sesión
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
