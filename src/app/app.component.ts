@@ -10,7 +10,7 @@ import {FormularioEstadoComponent} from './component/formulario-estado/formulari
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ListaAnalticasComponent, FormularioAnaliticaComponent, ListaPacienteComponent, FormularioPacienteComponent, FormularioMedicoComponent, ListaMedicoComponent, FormularioEstadoComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

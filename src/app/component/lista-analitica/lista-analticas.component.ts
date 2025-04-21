@@ -8,9 +8,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   selector: 'app-lista-analitica',
   imports: [
     NgForOf,
-    NgIf,
-    RouterLink,
-    RouterLinkActive
   ],
   templateUrl: './lista-analticas.component.html',
   styleUrls: ['./lista-analticas.component.css']

@@ -10,8 +10,6 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
   selector: 'app-lista-medico',
     imports: [
         NgForOf,
-        RouterLink,
-        RouterLinkActive
     ],
   templateUrl: './lista-medico.component.html',
   styleUrl: './lista-medico.component.css'

@@ -5,7 +5,6 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
 @Component({
   selector: 'app-home',
   imports: [
-    NgOptimizedImage,
     RouterLink,
     RouterLinkActive
   ],
