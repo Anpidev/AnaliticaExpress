@@ -7,27 +7,25 @@
   </div>
   <ul class="nav justify-content-center">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" routerLink="/formularioAnalitica" routerLinkActive="active">Crear nueva analitica</a>
+      <a class="nav-link active" aria-current="page" routerLink="/formularioAnalitica" routerLinkActive="active" [class.disabled]="!authService.tieneAcceso('ADMIN','MEDICO')">Crear nueva analitica</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" routerLink="/estado" routerLinkActive="active">Cambiar estado analítica</a>
+      <a class="nav-link active" aria-current="page" routerLink="/estado" routerLinkActive="active" [class.disabled]="!authService.tieneAcceso('ENFERMERA')">Cambiar estado analítica</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" routerLink="/formularioMedico" routerLinkActive="active">Crear nuevo médico</a>
+      <a class="nav-link active" aria-current="page" routerLink="/formularioMedico" routerLinkActive="active" [class.disabled]="!authService.tieneAcceso('ADMIN')">Crear nuevo médico</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" routerLink="/formularioPaciente" routerLinkActive="active">Crear nuevo paciente</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+      <a class="nav-link active" aria-current="page" routerLink="/formularioPaciente" routerLinkActive="active" [class.disabled]="!authService.tieneAcceso('ADMIN')">Crear nuevo paciente</a>
     </li>
   </ul>
 </nav>
 
 <!-- Sección Intermedia -->
 <section class="container my-5">
-  @if (usuario){
-  <h2 class="text-center mb-4">Bienvenido usuario : {{usuario?.nombreUsuario}}</h2>}
+  <div *ngIf="usuario">
+    <h2 class="text-center mb-4">Bienvenido usuario : {{usuario.nombreUsuario}}</h2>
+  </div>
   <p class="text-center mb-4">
     Analitica Express es una plataforma web para crear analtíticas de forma eficiente. Aquí puedes crear, gestionar y seguir el progreso de tus analíticas, pacientes, médicos y mucho más.
   </p>

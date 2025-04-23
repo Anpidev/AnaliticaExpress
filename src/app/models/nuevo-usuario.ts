@@ -1,7 +1,7 @@
-import {Rol} from './rol';
+import {Roles} from './roles';
 
 export interface NuevoUsuario {
   nombreUsuario:string,
   password:string,
-  rol:Rol
+  rol:Roles
 }

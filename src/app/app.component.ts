@@ -7,10 +7,11 @@ import {FormularioPacienteComponent} from './component/formulario-paciente/formu
 import {FormularioMedicoComponent} from './component/formulario-medico/formulario-medico.component';
 import {ListaMedicoComponent} from './component/lista-medico/lista-medico.component';
 import {FormularioEstadoComponent} from './component/formulario-estado/formulario-estado.component';
+import {ToastModule} from 'primeng/toast';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,ToastModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

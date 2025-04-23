@@ -1,3 +1,4 @@
+
 import {Rol} from './rol';
 
 export interface Usuario {

@@ -21,7 +21,7 @@
     <td>{{paciente.email }}</td>
     <td>{{paciente.telefono }}</td>
     <td>
-      <button type="submit" class="btn btn-danger" value="borrar" (click)="borrar(paciente)">BORRAR</button>
+      <button type="submit" class="btn btn-danger" value="borrar" (click)="borrar(paciente)" [disabled]="!authService.tieneAcceso('ADMIN')">BORRAR</button>
     </td>
   </tr>
   </tbody>

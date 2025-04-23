@@ -3,6 +3,7 @@ import { Analitica } from '../../models/analitica';
 import { NgForOf, NgIf } from '@angular/common';
 import { AnaliticaService } from '../../services/analitica-service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-lista-analitica',
@@ -15,7 +16,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 export class ListaAnalticasComponent {
   analiticas: Analitica[] = [];
 
-  constructor(public analiticaService: AnaliticaService) {
+  constructor(public analiticaService: AnaliticaService, public authService:AuthService) {
     this.cargarAnaliticas();
   }
 

@@ -1,5 +1,4 @@
-export enum Rol {
-  ADMIN = 'ADMIN',
-  ENFERMERA = 'ENFERMERA',
-  MEDICO = 'MEDICO'
+export interface Rol {
+  id:number,
+  nombre:string
 }

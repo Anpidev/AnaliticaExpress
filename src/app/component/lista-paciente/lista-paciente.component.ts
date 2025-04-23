@@ -3,6 +3,7 @@ import {AnaliticaService} from '../../services/analitica-service';
 import {Paciente} from '../../models/paciente';
 import {NgForOf} from '@angular/common';
 import {Medico} from '../../models/medico';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-lista-paciente',
@@ -16,7 +17,7 @@ export class ListaPacienteComponent {
 
   pacientes: Paciente[]=[];
 
-  constructor(public analiticaService:AnaliticaService) {
+  constructor(public analiticaService:AnaliticaService, public authService:AuthService) {
     this.cargarPacientes();}
 
   cargarPacientes(){
