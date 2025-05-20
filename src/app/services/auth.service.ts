@@ -14,25 +14,25 @@ export class AuthService {
   constructor(private readonly http: HttpClient) { }
 
   login(loginUsuario: LoginUsuario) {
-    return this.http.post(`https://tfg-m6og.onrender.com/webapi/auth/login`, loginUsuario, {
+    return this.http.post(`http://localhost:8080/webapi/auth/login`, loginUsuario, {
       withCredentials: true,
     });
   }
 
   register(nuevoUsuario: NuevoUsuario) {
-    return this.http.post(`https://tfg-m6og.onrender.com/webapi/auth/register`, nuevoUsuario, {
+    return this.http.post(`http://localhost:8080/webapi/auth/register`, nuevoUsuario, {
       withCredentials: true,
     });
   }
 
   getDetails(): Observable<Usuario> {
-    return this.http.get<Usuario>('https://tfg-m6og.onrender.com/webapi/auth/usuario/detalles', {
+    return this.http.get<Usuario>('http://localhost:8080/webapi/auth/usuario/detalles', {
       withCredentials: true,
     });
   }
 
   logout() {
-    return this.http.post(`https://tfg-m6og.onrender.com/webapi/auth/logout`, null, {
+    return this.http.post(`http://localhost:8080/webapi/auth/logout`, null, {
       withCredentials: true,
     });
   }

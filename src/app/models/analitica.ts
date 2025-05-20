@@ -16,7 +16,6 @@ export class Analitica {
   public estado: EstadoAnalitica,
   public observaciones: string,
   public parametros: Parametros[],
-  public expandido?: boolean,
  ) {
  }
 
