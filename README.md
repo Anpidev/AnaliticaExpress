@@ -10,9 +10,7 @@ Este es el componente frontend de la aplicación Analítica Express, desarrollad
 **Proyecto realizado por:** Ángela Ruiz Rivas
 **Curso:** 2025 DAW - EUROFORMAC FP
 
-**Repositorio Backend:** [Enlace a tu repositorio/carpeta del Backend](https://github.com/tu-usuario/analitica-express/tree/main/tfg) <!-- AJUSTA ESTE ENLACE -->
-**Documentación Completa del Proyecto (PDF):** [Enlace al PDF si lo subes al repo raíz o a otro lugar] <!-- OPCIONAL -->
-
+**Repositorio Backend:** [Enlace a repositorio del Backend](https://github.com/Anpidev/TFG/) 
 ---
 
 ## Tabla de Contenidos
