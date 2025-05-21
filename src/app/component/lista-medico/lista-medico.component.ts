@@ -3,13 +3,15 @@ import { AnaliticaService } from '../../services/analitica-service';
 import { Medico } from '../../models/medico';
 import { NgForOf, NgIf } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-lista-medico',
   standalone: true,
   imports: [
     NgForOf,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './lista-medico.component.html',
   styleUrls: ['./lista-medico.component.css']

@@ -4,12 +4,14 @@ import {Paciente} from '../../models/paciente';
 import {NgForOf, NgIf} from '@angular/common';
 import {Medico} from '../../models/medico';
 import {AuthService} from '../../services/auth.service';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-lista-paciente',
   imports: [
     NgForOf,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './lista-paciente.component.html',
   styleUrl: './lista-paciente.component.css'

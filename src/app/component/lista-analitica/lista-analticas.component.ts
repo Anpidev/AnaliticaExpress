@@ -11,7 +11,8 @@ import {AuthService} from '../../services/auth.service';
     NgForOf,
     DatePipe,
     NgClass,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './lista-analticas.component.html',
   styleUrls: ['./lista-analticas.component.css']
