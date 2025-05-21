@@ -1,35 +1,64 @@
-<h1 class="mb-3">LISTA ANALITÍCAS</h1>
-<table class="table">
-  <thead>
-  <tr>
-    <th scope="col">ID</th>
-    <th scope="col">Nombre del paciente</th>
-    <th scope="col">Apellido del paciente</th>
-    <th scope="col">Nombre del médico </th>
-    <th scope="col">Apellido del médico </th>
-    <th scope="col">Fecha </th>
-    <th scope="col">Estado </th>
-    <th scope="col">Observaciones </th>
-    <th scope="col">Parámetros </th>
-    <th scope="col"> </th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let analitica of analiticas">
-    <th scope="row">{{analitica.id}}</th>
-    <td>{{analitica.pacienteNombre }}</td>
-    <td>{{analitica.pacienteApellido }}</td>
-    <td>{{analitica.medicoNombre }}</td>
-    <td>{{analitica.medicoApellido }}</td>
-    <td>{{analitica.fechaCreacion }}</td>
-    <td>{{analitica.estado }}</td>
-    <td>{{analitica.observaciones }}</td>
-    <td>{{analitica.parametros }}</td>
-    <td>
-      <button type="submit" class="btn btn-danger" value="borrar" (click)="borrar(analitica)" [disabled]="!authService.tieneAcceso('ADMIN')">BORRAR</button>
-    </td>
-  </tr>
-  </tbody>
-</table>
+<div class="container mt-4"> <!-- Añade un contenedor y margen superior -->
+  <h1 class="mb-4 text-primary">LISTA DE ANALÍTICAS</h1> <!-- Título más destacado -->
 
-
+  <div class="table-responsive"> <!-- Para que la tabla sea responsive en pantallas pequeñas -->
+    <table class="table table-striped table-hover table-bordered align-middle"> <!-- Clases Bootstrap -->
+      <thead class="table-dark"> <!-- Cabecera oscura para contraste -->
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Paciente</th>
+        <th scope="col">Médico</th>
+        <th scope="col">Fecha Creación</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Observaciones</th>
+        <th scope="col">Parámetros</th>
+        <th scope="col" class="text-center">Acciones</th> <!-- Centrar texto de acciones -->
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let analitica of analiticas; let i = index" [class.table-secondary]="i % 2 !== 0"> <!-- Alternar color de filas manualmente si no usas table-striped -->
+        <th scope="row">{{analitica.id}}</th>
+        <td>{{analitica.pacienteNombre }} {{analitica.pacienteApellido }}</td>
+        <td>{{analitica.medicoNombre }} {{analitica.medicoApellido }}</td>
+        <td>{{analitica.fechaCreacion | date:'dd/MM/yyyy' }}</td> <!-- Formatear fecha -->
+        <td>
+            <span class="badge"
+                  [ngClass]="{
+                    'bg-primary': analitica.estado === 'CREADA',
+                    'bg-info text-dark': analitica.estado === 'EXTRAIDA',
+                    'bg-success': analitica.estado === 'COMPLETADA',
+                    'bg-danger': analitica.estado === 'CANCELADA'
+                  }">
+              {{analitica.estado}}
+            </span>
+        </td>
+        <td class="text-truncate" style="max-width: 200px;" [title]="analitica.observaciones">
+          {{analitica.observaciones || 'N/A'}}
+        </td>
+        <td>
+          <!-- Mejor forma de mostrar parámetros, ej: lista o badges -->
+          <ng-container *ngIf="analitica.parametros && analitica.parametros.length > 0; else noParams">
+            <span *ngFor="let param of analitica.parametros" class="badge bg-secondary me-1 mb-1">{{param}}</span>
+          </ng-container>
+          <ng-template #noParams>N/A</ng-template>
+        </td>
+        <td class="text-center">
+          <button type="button" class="btn btn-danger btn-sm" (click)="borrar(analitica)" [disabled]="!authService.tieneAcceso('ADMIN')" title="Borrar Analítica">
+            <i class="bi bi-trash-fill"></i> <!-- Icono de Bootstrap (necesitas incluir Bootstrap Icons) -->
+            <!-- O simplemente texto: BORRAR -->
+          </button>
+          <!-- Aquí podrías añadir más botones de acción, como "Ver Detalles" o "Editar" -->
+          <!--
+          <button type="button" class="btn btn-info btn-sm ms-2" (click)="verDetalles(analitica)" title="Ver Detalles">
+            <i class="bi bi-eye-fill"></i>
+          </button>
+          -->
+        </td>
+      </tr>
+      <tr *ngIf="!analiticas || analiticas.length === 0">
+        <td colspan="8" class="text-center fst-italic py-3">No hay analíticas para mostrar.</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

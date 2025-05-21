@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Analitica } from '../../models/analitica';
-import { NgForOf, NgIf } from '@angular/common';
+import {DatePipe, NgClass, NgForOf, NgIf} from '@angular/common';
 import { AnaliticaService } from '../../services/analitica-service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {AuthService} from '../../services/auth.service';
@@ -9,6 +9,8 @@ import {AuthService} from '../../services/auth.service';
   selector: 'app-lista-analitica',
   imports: [
     NgForOf,
+    DatePipe,
+    NgClass,
   ],
   templateUrl: './lista-analticas.component.html',
   styleUrls: ['./lista-analticas.component.css']
