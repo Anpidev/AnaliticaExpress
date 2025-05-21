@@ -64,7 +64,7 @@
             <label for="observaciones" class="form-label fw-bold">Observaciones:</label>
             <textarea class="form-control" id="observaciones" name="observaciones" rows="3"
                       [(ngModel)]="analitica.observaciones"></textarea>
-            <!-- Puedes añadir validaciones a las observaciones si es necesario, como maxlength -->
+
           </div>
 
           <div class="col-12 mt-4">
@@ -74,16 +74,16 @@
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox"
                          [id]="'param-'+parametro"
-                         [name]="'param-'+parametro" <!-- Añadir name para que ngModel funcione con template-driven si fuera necesario, aunque aquí controlas el array manualmente -->
+                         [name]="'param-'+parametro"
                   [checked]="isParametroSelected(parametro)"
                   (change)="toggleParametro(parametro)">
                   <label class="form-check-label" [for]="'param-'+parametro">
-                    {{parametro | titlecase}} <!-- titlecase para mejor formato del label -->
+                    {{parametro | titlecase}}
                   </label>
                 </div>
               </div>
             </div>
-            <!-- Validación para parámetros (opcional, si es requerido al menos uno) -->
+
             <div *ngIf="analiticaForm.submitted && (!analitica.parametros || analitica.parametros.length === 0)" class="text-danger mt-2 small">
               Debes seleccionar al menos un parámetro.
             </div>
