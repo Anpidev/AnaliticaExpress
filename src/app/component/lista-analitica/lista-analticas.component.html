@@ -2,7 +2,7 @@
   <h1 class="mb-4 text-primary">LISTA DE ANALÍTICAS</h1> <!-- Título más destacado -->
 
   <div class="table-responsive"> <!-- Para que la tabla sea responsive en pantallas pequeñas -->
-    <table class="table table-striped table-hover table-bordered align-middle"> <!-- Clases Bootstrap -->
+    <table class="table table-striped table-hover table-bordered align-middle">
       <thead class="table-dark"> <!-- Cabecera oscura para contraste -->
       <tr>
         <th scope="col">ID</th>
@@ -44,15 +44,9 @@
         </td>
         <td class="text-center">
           <button type="button" class="btn btn-danger btn-sm" (click)="borrar(analitica)" [disabled]="!authService.tieneAcceso('ADMIN')" title="Borrar Analítica">
-            <i class="bi bi-trash-fill"></i> <!-- Icono de Bootstrap (necesitas incluir Bootstrap Icons) -->
-            <!-- O simplemente texto: BORRAR -->
+           BORRAR
           </button>
-          <!-- Aquí podrías añadir más botones de acción, como "Ver Detalles" o "Editar" -->
-          <!--
-          <button type="button" class="btn btn-info btn-sm ms-2" (click)="verDetalles(analitica)" title="Ver Detalles">
-            <i class="bi bi-eye-fill"></i>
-          </button>
-          -->
+
         </td>
       </tr>
       <tr *ngIf="!analiticas || analiticas.length === 0">
