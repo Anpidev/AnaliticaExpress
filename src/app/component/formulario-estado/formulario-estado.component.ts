@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Analitica } from '../../models/analitica';
-import { FormsModule } from '@angular/forms';
-import {NgForOf, NgIf} from '@angular/common';
+import { FormsModule, NgForm } from '@angular/forms'; // NgForm para la referencia
+import {NgClass, NgForOf, NgIf} from '@angular/common';      // CommonModule o NgIf/NgForOf
 import { EstadoAnalitica } from '../../models/estado-analitica';
 import { AnaliticaService } from '../../services/analitica-service';
-import {Router} from '@angular/router';
+import { Router, RouterLink } from '@angular/router';   // RouterLink
 
 @Component({
   selector: 'app-formulario-estado',
@@ -12,17 +12,21 @@ import {Router} from '@angular/router';
   imports: [
     FormsModule,
     NgForOf,
-    NgIf
+    NgIf,
+    RouterLink,
+    NgClass,
+    // Para los botones de cancelar/volver
   ],
   templateUrl: './formulario-estado.component.html',
-  styleUrl: './formulario-estado.component.css'
+  styleUrls: ['./formulario-estado.component.css']
 })
 export class FormularioEstadoComponent implements OnInit {
   analiticas: Analitica[] = [];
-  analiticaSeleccionada?: Analitica;
+  // Inicializar analiticaSeleccionada como undefined para que el placeholder funcione
+  analiticaSeleccionada: Analitica | undefined = undefined;
   estados = Object.values(EstadoAnalitica);
 
-  constructor(private analiticaService: AnaliticaService, public router:Router) {}
+  constructor(private analiticaService: AnaliticaService, public router: Router) {}
 
   ngOnInit(): void {
     this.analiticaService.buscarAnaliticas().subscribe(data => {
@@ -35,13 +39,24 @@ export class FormularioEstadoComponent implements OnInit {
   }
 
   public submit(): void {
-    if (this.analiticaSeleccionada) {
-      this.analiticaService.actualizarEstado(this.analiticaSeleccionada).subscribe(() => {
-        console.log("Estado actualizado");
-        this.router.navigateByUrl("/analiticas");
+    // La validación principal se hace en la plantilla con (ngSubmit)
+    // y el botón [disabled] también verifica !analiticaSeleccionada
+
+    if (this.analiticaSeleccionada) { // Doble verificación por si acaso
+      console.log('Analítica a actualizar:', this.analiticaSeleccionada);
+      this.analiticaService.actualizarEstado(this.analiticaSeleccionada).subscribe({
+        next: () => {
+          console.log("Estado actualizado");
+          // this.toastService.showToast('success', 'Éxito', 'Estado de la analítica actualizado.');
+          this.router.navigateByUrl("/analiticas");
+        },
+        error: (err) => {
+          console.error("Error al actualizar estado:", err);
+          // this.toastService.showToast('error', 'Error', 'No se pudo actualizar el estado.');
+        }
       });
     } else {
-      console.warn("No has seleccionado ninguna analítica.");
+      console.warn("Intento de submit sin analítica seleccionada (esto no debería pasar si el botón está bien deshabilitado).");
     }
   }
 }

@@ -1,48 +1,102 @@
-<form>
-  <div class="mb-3">
-    <h1 class="mb-3">FORMULARIO ANALITÍCA</h1>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="text-primary mb-0">FORMULARIO DE ANALÍTICA</h1>
+    <a routerLink="/home" class="btn btn-outline-secondary">
+      Volver a Inicio
+    </a>
   </div>
-  <div class="mb-3">
-    <h4 class="mb-3">PACIENTE</h4>
-    <select name="paciente" [(ngModel)]="analitica.pacienteId"
-            class="form-select" aria-label="Default select example">
-      <option *ngFor="let paciente of pacientes" [ngValue]="paciente.id">
-        {{paciente.nombre}} {{paciente.apellido}} -- {{paciente.dni}}
-      </option>
-    </select>
-  </div>
-  <div class="mb-3">
-    <h4 class="mb-3">MEDICO</h4>
-    <select name="medico" [(ngModel)]="analitica.medicoId"
-            class="form-select" aria-label="Default select example">
-      <option *ngFor="let medico of medicos" [ngValue]="medico.id">
-        {{medico.nombre}} {{medico.apellido}} -- {{medico.colegiado}}
-      </option>
-    </select>
-  </div>
-  <div class="mb-3">
-    <h4 class="mb-3">FECHA</h4>
-    <input type="date" class="form-control" id="fecha" name="fecha" [(ngModel)]="analitica.fechaCreacion">
-  </div>
-  <div class="mb-3">
-    <h4 class="mb-3">OBSERVACIONES</h4>
-    <input type="text" class="form-control" id="observaciones" name="observaciones" [(ngModel)]="analitica.observaciones">
-  </div>
-  <div class="mb-4">
-    <h4 class="mb-3">PARÁMETROS</h4>
-    <div class="row">
-      <div *ngFor="let parametro of todosParametros" class="col-md-4 col-sm-6 mb-2">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox"
-                 [id]="'param-'+parametro"
-                 [checked]="isParametroSelected(parametro)"
-                 (change)="toggleParametro(parametro)">
-          <label class="form-check-label" [for]="'param-'+parametro">
-            {{parametro}}
-          </label>
+
+  <form #analiticaForm="ngForm" (ngSubmit)="analiticaForm.form.valid && submit()">
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Detalles de la Analítica</h5>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+
+          <div class="col-md-6">
+            <label for="pacienteSelect" class="form-label fw-bold">Paciente:</label>
+            <select class="form-select" id="pacienteSelect" name="paciente"
+                    [(ngModel)]="analitica.pacienteId"
+                    required
+                    #pacienteInput="ngModel"
+                    [ngClass]="{'is-invalid': pacienteInput.invalid && (pacienteInput.dirty || pacienteInput.touched || analiticaForm.submitted)}">
+              <option [ngValue]="undefined" disabled selected>-- Selecciona un paciente --</option>
+              <option *ngFor="let paciente of pacientes" [ngValue]="paciente.id">
+                {{paciente.nombre}} {{paciente.apellido}} -- {{paciente.dni}}
+              </option>
+            </select>
+            <div *ngIf="pacienteInput.invalid && (pacienteInput.dirty || pacienteInput.touched || analiticaForm.submitted)" class="invalid-feedback">
+              Seleccionar un paciente es obligatorio.
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="medicoSelect" class="form-label fw-bold">Médico Solicitante:</label>
+            <select class="form-select" id="medicoSelect" name="medico"
+                    [(ngModel)]="analitica.medicoId"
+                    required
+                    #medicoInput="ngModel"
+                    [ngClass]="{'is-invalid': medicoInput.invalid && (medicoInput.dirty || medicoInput.touched || analiticaForm.submitted)}">
+              <option [ngValue]="undefined" disabled selected>-- Selecciona un médico --</option>
+              <option *ngFor="let medico of medicos" [ngValue]="medico.id">
+                {{medico.nombre}} {{medico.apellido}} -- {{medico.colegiado}}
+              </option>
+            </select>
+            <div *ngIf="medicoInput.invalid && (medicoInput.dirty || medicoInput.touched || analiticaForm.submitted)" class="invalid-feedback">
+              Seleccionar un médico es obligatorio.
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="fechaCreacion" class="form-label fw-bold">Fecha de Creación:</label>
+            <input type="date" class="form-control" id="fechaCreacion" name="fechaCreacion"
+                   [(ngModel)]="analitica.fechaCreacion"
+                   required
+                   #fechaInput="ngModel"
+                   [ngClass]="{'is-invalid': fechaInput.invalid && (fechaInput.dirty || fechaInput.touched || analiticaForm.submitted)}">
+            <div *ngIf="fechaInput.invalid && (fechaInput.dirty || fechaInput.touched || analiticaForm.submitted)" class="invalid-feedback">
+              La fecha de creación es obligatoria.
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="observaciones" class="form-label fw-bold">Observaciones:</label>
+            <textarea class="form-control" id="observaciones" name="observaciones" rows="3"
+                      [(ngModel)]="analitica.observaciones"></textarea>
+            <!-- Puedes añadir validaciones a las observaciones si es necesario, como maxlength -->
+          </div>
+
+          <div class="col-12 mt-4">
+            <h5 class="mb-3 fw-bold">Parámetros a Analizar:</h5>
+            <div class="row">
+              <div *ngFor="let parametro of todosParametros" class="col-md-4 col-sm-6 mb-2">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox"
+                         [id]="'param-'+parametro"
+                         [name]="'param-'+parametro" <!-- Añadir name para que ngModel funcione con template-driven si fuera necesario, aunque aquí controlas el array manualmente -->
+                  [checked]="isParametroSelected(parametro)"
+                  (change)="toggleParametro(parametro)">
+                  <label class="form-check-label" [for]="'param-'+parametro">
+                    {{parametro | titlecase}} <!-- titlecase para mejor formato del label -->
+                  </label>
+                </div>
+              </div>
+            </div>
+            <!-- Validación para parámetros (opcional, si es requerido al menos uno) -->
+            <div *ngIf="analiticaForm.submitted && (!analitica.parametros || analitica.parametros.length === 0)" class="text-danger mt-2 small">
+              Debes seleccionar al menos un parámetro.
+            </div>
+          </div>
+
         </div>
       </div>
+      <div class="card-footer text-end">
+        <a routerLink="/analiticas" class="btn btn-outline-secondary me-2">Cancelar</a>
+        <button type="submit" class="btn btn-primary" [disabled]="analiticaForm.form.invalid && analiticaForm.submitted">
+           Crear Analítica
+        </button>
+      </div>
     </div>
-  </div>
-  <button type="submit" class="btn btn-primary" value="insertar" (click)="submit()">Insertar</button>
-</form>
+  </form>
+</div>

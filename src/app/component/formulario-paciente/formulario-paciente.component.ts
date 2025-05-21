@@ -1,32 +1,47 @@
 import { Component } from '@angular/core';
-import {Analitica} from '../../models/analitica';
-import {Paciente} from '../../models/paciente';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {CommonModule} from '@angular/common';
-import {AnaliticaService} from '../../services/analitica-service';
-import {Router} from '@angular/router';
+import { FormsModule, NgForm } from '@angular/forms'; // NgForm
+import { CommonModule } from '@angular/common';      // Para *ngIf, etc.
+import { Paciente } from '../../models/paciente';
+import { AnaliticaService } from '../../services/analitica-service';
+import { Router, RouterLink } from '@angular/router'; // RouterLink
 
 @Component({
   selector: 'app-formulario-paciente',
+  standalone: true, // Si es standalone
   imports: [
-    FormsModule,CommonModule
+    FormsModule,
+    CommonModule,
+    RouterLink
   ],
   templateUrl: './formulario-paciente.component.html',
-  styleUrl: './formulario-paciente.component.css'
+  styleUrls: ['./formulario-paciente.component.css']
 })
 export class FormularioPacienteComponent {
   paciente: Paciente = {
-    ...{} as Paciente,
+    id: 0,
+    nombre: '',
+    apellido: '',
+    dni: '',
+    email: '',
+    telefono: ''
+  };
+
+  constructor(private analiticaService: AnaliticaService, public router: Router) {}
+
+  public submit(): void {
+    // La validación principal se hace en la plantilla con (ngSubmit)="pacienteForm.form.valid && submit()"
+    console.log('Datos del paciente a enviar:', this.paciente);
+
+    this.analiticaService.insertarPaciente(this.paciente).subscribe({
+      next: () => {
+        console.log("Paciente añadido");
+        // this.toastService.showToast('success', 'Éxito', 'Paciente guardado correctamente');
+        this.router.navigateByUrl("/pacientes");
+      },
+      error: (err) => {
+        console.error("Error al añadir paciente:", err);
+        // this.toastService.showToast('error', 'Error', 'No se pudo guardar el paciente. ' + (err.error?.mensaje || err.message));
+      }
+    });
   }
-
-//Inyeccion del service
-  constructor(private analiticaService: AnaliticaService, public router:Router) {}
-
-  public submit():void{
-    this.analiticaService.insertarPaciente(this.paciente).subscribe(()=>{
-      console.log("Paciente añadido");
-      this.router.navigateByUrl("/pacientes");
-    })
-  }
-
 }

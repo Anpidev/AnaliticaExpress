@@ -1,25 +1,67 @@
-<form>
-  <div class="mb-3">
-    <h1 class="mb-3">CAMBIO DE ESTADO DE LA ANALÍTICA</h1>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="text-primary mb-0">CAMBIO DE ESTADO DE ANALÍTICA</h1>
+    <a routerLink="/home" class="btn btn-outline-secondary">
+      Volver a Inicio
+    </a>
   </div>
 
-  <div class="mb-3">
-    <label>Selecciona una analítica</label>
-    <select [(ngModel)]="analiticaSeleccionada" name="analitica" [compareWith]="compararAnaliticas">
-      <option *ngFor="let a of analiticas" [ngValue]="a">
-        ID: {{a.id}} - Estado actual: {{a.estado}}
-      </option>
-    </select>
-  </div>
+  <form #estadoForm="ngForm" (ngSubmit)="estadoForm.form.valid && submit()">
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Seleccionar Analítica y Nuevo Estado</h5>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
 
-  <div class="mb-3" *ngIf="analiticaSeleccionada">
-    <h4 class="mb-3">Nuevo estado</h4>
-    <select [(ngModel)]="analiticaSeleccionada.estado" name="estado">
-      <option *ngFor="let estado of estados" [value]="estado">
-        {{estado}}
-      </option>
-    </select>
-  </div>
+          <div class="col-12">
+            <label for="analiticaSelect" class="form-label fw-bold">Selecciona una analítica:</label>
+            <select class="form-select" id="analiticaSelect"
+                    name="analitica"
+                    [(ngModel)]="analiticaSeleccionada"
+                    [compareWith]="compararAnaliticas"
+                    required
+                    #analiticaInput="ngModel"
+                    [ngClass]="{'is-invalid': analiticaInput.invalid && (analiticaInput.dirty || analiticaInput.touched || estadoForm.submitted)}">
+              <option [ngValue]="undefined" disabled selected>-- Elige una analítica --</option> <!-- Opción por defecto -->
+              <option *ngFor="let a of analiticas" [ngValue]="a">
+                ID: {{a.id}} - Paciente: {{a.pacienteNombre}} {{a.pacienteApellido}} - Estado actual: {{a.estado}}
+              </option>
+            </select>
+            <div *ngIf="analiticaInput.invalid && (analiticaInput.dirty || analiticaInput.touched || estadoForm.submitted)" class="invalid-feedback">
+              Seleccionar una analítica es obligatorio.
+            </div>
+          </div>
 
-  <button type="submit" class="btn btn-primary" (click)="submit()">Actualizar</button>
-</form>
+          <div class="col-12" *ngIf="analiticaSeleccionada">
+            <label for="estadoSelect" class="form-label fw-bold">Nuevo estado:</label>
+            <select class="form-select" id="estadoSelect"
+                    name="estado"
+                    [(ngModel)]="analiticaSeleccionada.estado"
+                    required
+                    #estadoInput="ngModel"
+                    [ngClass]="{'is-invalid': estadoInput.invalid && (estadoInput.dirty || estadoInput.touched || estadoForm.submitted)}">
+              <option *ngFor="let estado of estados" [value]="estado">
+                {{estado}}
+              </option>
+            </select>
+            <div *ngIf="estadoInput.invalid && (estadoInput.dirty || estadoInput.touched || estadoForm.submitted)" class="invalid-feedback">
+              Seleccionar un nuevo estado es obligatorio.
+            </div>
+          </div>
+
+          <div class="col-12" *ngIf="!analiticaSeleccionada && (estadoForm.submitted || analiticaInput.touched)">
+            <p class="text-muted fst-italic mt-2">Por favor, selecciona primero una analítica para ver las opciones de estado.</p>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-footer text-end">
+        <a routerLink="/analiticas" class="btn btn-outline-secondary me-2">Cancelar</a>
+        <button type="submit" class="btn btn-primary" [disabled]="estadoForm.form.invalid || !analiticaSeleccionada">
+        Actualizar Estado
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
