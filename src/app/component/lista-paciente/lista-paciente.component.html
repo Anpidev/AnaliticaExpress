@@ -1,28 +1,45 @@
-<h1 class="mb-3">LISTA PACIENTES</h1>
-<table class="table">
-  <thead>
-  <tr>
-    <th scope="col">ID</th>
-    <th scope="col">Nombre</th>
-    <th scope="col">Apellidos</th>
-    <th scope="col">DNI</th>
-    <th scope="col">Email </th>
-    <th scope="col">Teléfono </th>
-    <th scope="col"> </th>
+<div class="container mt-4">
+  <h1 class="mb-4 text-primary">LISTA DE PACIENTES</h1>
 
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let paciente of pacientes">
-    <th scope="row">{{paciente.id}}</th>
-    <td>{{paciente.nombre }}</td>
-    <td>{{paciente.apellido }}</td>
-    <td>{{paciente.dni }}</td>
-    <td>{{paciente.email }}</td>
-    <td>{{paciente.telefono }}</td>
-    <td>
-      <button type="submit" class="btn btn-danger" value="borrar" (click)="borrar(paciente)" [disabled]="!authService.tieneAcceso('ADMIN')">BORRAR</button>
-    </td>
-  </tr>
-  </tbody>
-</table>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered align-middle">
+      <thead class="table-primary">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre Completo</th>
+        <th scope="col">DNI</th>
+        <th scope="col">Email</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col" class="text-center">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let paciente of pacientes; let i = index">
+        <th scope="row">{{paciente.id}}</th>
+        <td>{{paciente.nombre }} {{paciente.apellido }}</td>
+        <td>{{paciente.dni || 'N/A'}}</td>
+        <td>
+          <a href="mailto:{{paciente.email}}" title="Enviar email a {{paciente.nombre}}">{{paciente.email || 'N/A'}}</a>
+        </td>
+        <td>{{paciente.telefono || 'N/A'}}</td>
+        <td class="text-center">
+          <button type="button" class="btn btn-danger btn-sm"
+                  (click)="borrar(paciente)"
+                  [disabled]="!authService.tieneAcceso('ADMIN')"
+                  title="Borrar Médico">
+            BORRAR
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="!pacientes || pacientes.length === 0">
+        <td colspan="6" class="text-center fst-italic py-3">No hay pacientes para mostrar.</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <a routerLink="/home" class="btn btn-outline-secondary">
+    Volver a Inicio
+  </a>
+
+</div>

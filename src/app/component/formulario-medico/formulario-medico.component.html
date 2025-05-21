@@ -1,27 +1,94 @@
-<form>
-  <div class="mb-3">
-    <h1 class="mb-3">FORMULARIO MÉDICO</h1>
-  </div>
-  <div class="mb-3">
-    <h4 class="mb-3">NOMBRE</h4>
-    <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="medico.nombre">
-  </div>
-  <div class="mb-3">
-    <h4 class="mb-3">APELLIDOS</h4>
-    <input type="text" class="form-control" id="apellidos" name="apellidos" [(ngModel)]="medico.apellido">
-  </div>
-  <div class="mb-3">
-    <h4 class="mb-3">NÚMERO COLEGIADO</h4>
-    <input type="text" class="form-control" id="colegiado" name="colegiado" [(ngModel)]="medico.colegiado">
-  </div>
-  <div class="mb-3">
-    <h4 class="mb-3">EMAIL</h4>
-    <input type="text" class="form-control" id="email" name="email" [(ngModel)]="medico.email">
-  </div>
-  <div class="mb-3">
-    <h4 class="mb-3">TELÉFONO</h4>
-    <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="medico.telefono">
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="text-primary mb-0">FORMULARIO DE MÉDICO</h1>
+    <a routerLink="/home" class="btn btn-outline-secondary">
+      <i class="bi bi-house-door-fill"></i> Volver a Inicio
+    </a>
   </div>
 
-  <button type="submit" class="btn btn-primary" value="insertar" (click)="submit()">Insertar</button>
-</form>
+  <form #medicoForm="ngForm" (ngSubmit)="medicoForm.form.valid && submit()"> <!-- El submit ahora se condiciona aquí -->
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Datos del Médico</h5>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+
+          <div class="col-md-6">
+            <label for="nombre" class="form-label fw-bold">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" name="nombre"
+                   [(ngModel)]="medico.nombre"
+                   required
+                   minlength="3"
+                   #nombreInput="ngModel"
+                   [ngClass]="{'is-invalid': nombreInput.invalid && (nombreInput.dirty || nombreInput.touched || medicoForm.submitted)}">
+            <div *ngIf="nombreInput.invalid && (nombreInput.dirty || nombreInput.touched || medicoForm.submitted)" class="invalid-feedback">
+              <div *ngIf="nombreInput.errors?.['required']">El nombre es obligatorio.</div>
+              <div *ngIf="nombreInput.errors?.['minlength']">El nombre debe tener al menos 3 caracteres.</div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="apellidos" class="form-label fw-bold">Apellidos:</label>
+            <input type="text" class="form-control" id="apellidos" name="apellidos"
+                   [(ngModel)]="medico.apellido"
+                   required
+                   minlength="3"
+                   #apellidoInput="ngModel"
+                   [ngClass]="{'is-invalid': apellidoInput.invalid && (apellidoInput.dirty || apellidoInput.touched || medicoForm.submitted)}">
+            <div *ngIf="apellidoInput.invalid && (apellidoInput.dirty || apellidoInput.touched || medicoForm.submitted)" class="invalid-feedback">
+              <div *ngIf="apellidoInput.errors?.['required']">Los apellidos son obligatorios.</div>
+              <div *ngIf="apellidoInput.errors?.['minlength']">Los apellidos deben tener al menos 3 caracteres.</div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="colegiado" class="form-label fw-bold">Número Colegiado:</label>
+            <input type="text" class="form-control" id="colegiado" name="colegiado"
+                   [(ngModel)]="medico.colegiado"
+                   required
+                   #colegiadoInput="ngModel"
+                   [ngClass]="{'is-invalid': colegiadoInput.invalid && (colegiadoInput.dirty || colegiadoInput.touched || medicoForm.submitted)}">
+            <div *ngIf="colegiadoInput.invalid && (colegiadoInput.dirty || colegiadoInput.touched || medicoForm.submitted)" class="invalid-feedback">
+              <div *ngIf="colegiadoInput.errors?.['required']">El número de colegiado es obligatorio.</div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="email" class="form-label fw-bold">Email:</label>
+            <input type="email" class="form-control" id="email" name="email"
+                   [(ngModel)]="medico.email"
+                   required
+                   email
+                   #emailInput="ngModel"
+                   [ngClass]="{'is-invalid': emailInput.invalid && (emailInput.dirty || emailInput.touched || medicoForm.submitted)}">
+            <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched || medicoForm.submitted)" class="invalid-feedback">
+              <div *ngIf="emailInput.errors?.['required']">El email es obligatorio.</div>
+              <div *ngIf="emailInput.errors?.['email']">Por favor, introduce un email válido.</div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="telefono" class="form-label fw-bold">Teléfono:</label>
+            <input type="tel" class="form-control" id="telefono" name="telefono"
+                   [(ngModel)]="medico.telefono"
+                   pattern="^[0-9]{9}$"
+                   #telefonoInput="ngModel"
+                   [ngClass]="{'is-invalid': telefonoInput.invalid && (telefonoInput.dirty || telefonoInput.touched || medicoForm.submitted)}">
+            <div *ngIf="telefonoInput.invalid && (telefonoInput.dirty || telefonoInput.touched || medicoForm.submitted)" class="invalid-feedback">
+              <div *ngIf="telefonoInput.errors?.['pattern']">El teléfono debe tener 9 dígitos.</div>
+              <div *ngIf="telefonoInput.errors?.['required']">El teléfono es obligatorio (si lo haces required).</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-footer text-end">
+        <a routerLink="/medicos" class="btn btn-outline-secondary me-2">Cancelar</a>
+        <button type="submit" class="btn btn-primary" [disabled]="medicoForm.form.invalid && medicoForm.submitted">
+          Guardar Médico
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import {AnaliticaService} from '../../services/analitica-service';
 import {Paciente} from '../../models/paciente';
-import {NgForOf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {Medico} from '../../models/medico';
 import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-lista-paciente',
   imports: [
-    NgForOf
+    NgForOf,
+    NgIf
   ],
   templateUrl: './lista-paciente.component.html',
   styleUrl: './lista-paciente.component.css'
