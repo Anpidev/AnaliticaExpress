@@ -26,11 +26,6 @@ export class ListaAnalticasComponent {
   cargarAnaliticas() {
     this.analiticaService.buscarAnaliticas().subscribe((datos) => {
       this.analiticas = datos;
-      console.log('Analíticas recibidas:', this.analiticas);
-      // Inspecciona cada analitica y su propiedad 'parametros'
-      this.analiticas.forEach(a => {
-        console.log(`ID: ${a.id}, Parámetros:`, a.parametros, `Tipo: ${typeof a.parametros}, Longitud: ${a.parametros ? a.parametros.length : 'N/A'}`);
-      });
     });
   }
 
