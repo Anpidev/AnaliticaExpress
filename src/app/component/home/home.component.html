@@ -1,33 +1,52 @@
-<nav class="navbar bg-body-tertiary">
+<!-- Añadido navbar-expand-lg para mejor manejo del colapso en móvil -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand d-flex align-items-center" href="#">
+    <a class="navbar-brand d-flex align-items-center" routerLink="/home">
       <img src="logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
-      <h1 class="ms-2 mb-0">Analitica Express</h1>
+      <h1 class="ms-2 mb-0 d-none d-sm-inline">Analitica Express</h1> <!-- Ocultar en extra-pequeño si es muy largo -->
     </a>
+
+    <!-- Botón para colapsar en móvil -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/formularioAnalitica" routerLinkActive="active" [class.disabled]="!authService.tieneAcceso('ADMIN','MEDICO')">Crear Analítica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/estado" routerLinkActive="active" [class.disabled]="!authService.tieneAcceso('ENFERMERA','ADMIN')">Cambiar Estado</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/formularioMedico" routerLinkActive="active" [class.disabled]="!authService.tieneAcceso('ADMIN')">Crear Médico</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/formularioPaciente" routerLinkActive="active" [class.disabled]="!authService.tieneAcceso('ADMIN')">Crear Paciente</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.tieneAcceso('ADMIN')">
+          <a class="nav-link" routerLink="/registro" routerLinkActive="active">Registrar Usuario</a>
+        </li>
+      </ul>
+
+      <!-- Botón de Cerrar Sesión alineado a la derecha -->
+      <ul class="navbar-nav"> <!-- Nueva lista para elementos a la derecha -->
+        <li class="nav-item">
+          <button class="btn btn-outline-danger" (click)="logout()">Cerrar Sesión</button>
+        </li>
+      </ul>
+    </div>
   </div>
-  <ul class="nav justify-content-center">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" routerLink="/formularioAnalitica" routerLinkActive="active" [class.disabled]="!authService.tieneAcceso('ADMIN','MEDICO')">Crear nueva analitica</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" routerLink="/estado" routerLinkActive="active" [class.disabled]="!authService.tieneAcceso('ENFERMERA','ADMIN')">Cambiar estado analítica</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" routerLink="/formularioMedico" routerLinkActive="active" [class.disabled]="!authService.tieneAcceso('ADMIN')">Crear nuevo médico</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" routerLink="/formularioPaciente" routerLinkActive="active" [class.disabled]="!authService.tieneAcceso('ADMIN')">Crear nuevo paciente</a>
-    </li>
-  </ul>
 </nav>
 
 <!-- Sección Intermedia -->
 <section class="container my-5">
   <div *ngIf="usuario">
-    <h2 class="text-center mb-4">Bienvenido usuario : {{usuario.nombreUsuario}}</h2>
+    <h2 class="text-center mb-4">Bienvenido usuario: {{usuario.nombreUsuario}} (Rol: {{usuario.rol.nombre}})</h2>
   </div>
   <p class="text-center mb-4">
-    Analitica Express es una plataforma web para crear analtíticas de forma eficiente. Aquí puedes crear, gestionar y seguir el progreso de tus analíticas, pacientes, médicos y mucho más.
+    Analitica Express es una plataforma web para crear analíticas de forma eficiente. Aquí puedes crear, gestionar y seguir el progreso de tus analíticas, pacientes, médicos y mucho más.
   </p>
 
   <!-- Tarjetas de información -->
